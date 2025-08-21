@@ -37,7 +37,6 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
     private boolean moverDer = false;
 
 
-    // Bandera para inicialización segura
     private boolean inicioListo = false;
 
     public PanelJuego(Jugador j) {
@@ -99,7 +98,7 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
         super.paintComponent(g);
 
         if (!inicioListo) {
-            initJuego(); // inicialización segura al tener tamaño
+            initJuego(); 
             inicioListo = true;
         }
 
@@ -170,8 +169,8 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    	moverPaleta();  // mueve la paleta según teclas
-    	moverBola();    // mueve la bola
+    	moverPaleta(); 
+    	moverBola();    
     	chequearColisiones();
     	repaint();
 
@@ -209,22 +208,20 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
         int paletaHeight = altoPanel / 40;
         int bolaRadio = anchoPanel / 70;
 
-        // Paleta centrada
         paletaX = anchoPanel / 2.0 - paletaWidth / 2.0;
 
-        // Bola sobre la paleta
         bolaX = paletaX + paletaWidth / 2.0 - bolaRadio;
         bolaY = altoPanel - paletaHeight * 4 - bolaRadio * 2;
 
-        // Generar ángulo aleatorio entre -60° y 60° respecto a la vertical
+       
         double angulo;
         do {
             angulo = Math.toRadians((Math.random() * 120) - 60);
-        } while (Math.abs(Math.sin(angulo)) < 0.2); // evitar DX muy pequeño
+        } while (Math.abs(Math.sin(angulo)) < 0.2); 
 
         double velocidad = bolaVelocidad;
         bolaDX = velocidad * Math.sin(angulo);
-        bolaDY = -Math.abs(velocidad * Math.cos(angulo)); // siempre hacia arriba
+        bolaDY = -Math.abs(velocidad * Math.cos(angulo)); 
     }
 
 
@@ -341,7 +338,6 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) moverIzq = true;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) moverDer = true;
 
-        // Tecla para pasar de nivel
         if (e.getKeyCode() == KeyEvent.VK_N) {
             jugador.subirNivel();
             jugador.setVidas(3); 
@@ -351,9 +347,8 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
             JOptionPane.showMessageDialog(this, "¡Nivel cambiado! Ahora estás en Nivel " + jugador.getNivel());
         }
 
-        // Tecla para reiniciar el nivel actual
         if (e.getKeyCode() == KeyEvent.VK_R) {
-            jugador.setVidas(3); // opcional: reiniciar vidas
+            jugador.setVidas(3);
             generarLadrillosPorNivel(jugador.getNivel());
             reiniciarBola();
            
