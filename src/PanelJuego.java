@@ -106,7 +106,6 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
         int anchoPanel = getWidth();
         int altoPanel = getHeight();
 
-        // Fondo
         g2d.drawImage(texturaFondo, 0, 0, anchoPanel, altoPanel, this);
 
         int bolaRadio = anchoPanel / 70;
@@ -145,7 +144,6 @@ public class PanelJuego extends JPanel implements ActionListener, KeyListener {
             }
         }
 
-        // Textos
         g2d.setColor(Color.WHITE);
         int fontSize = anchoPanel / 50;
         g2d.setFont(new Font("Arial", Font.BOLD, fontSize));
